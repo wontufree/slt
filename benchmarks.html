@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>性能基准 - 言象 (YanXiang)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Space Grotesk"', '"Noto Sans SC"', 'sans-serif'] },
+                    colors: {
+                        primary: '#f8fafc',
+                        secondary: '#ffffff',
+                        accent: '#0ea5e9',
+                        textMain: '#0f172a',
+                        textDim: '#64748b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-primary text-textMain antialiased pt-20">
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200">
+        <div class="max-w-[1440px] mx-auto px-6 h-16 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="w-8 h-8 rounded-lg bg-textMain flex items-center justify-center text-white font-bold text-sm shadow-md">言</div>
+                <span class="font-bold text-lg tracking-tight">言象<span class="text-accent text-xs ml-1.5 font-mono">Yan.Xiang</span></span>
+            </div>
+            <div class="hidden md:flex space-x-8 lg:space-x-10 text-sm font-medium text-textDim tracking-wide">
+                <a href="index.html" class="hover:text-textMain transition-colors py-1">翻译引擎</a>
+                <a href="architecture.html" class="hover:text-textMain transition-colors py-1">核心壁垒</a>
+                <a href="benchmarks.html" class="text-textMain font-bold border-b-2 border-textMain pb-1">性能基准</a>
+                <a href="about.html" class="hover:text-textMain transition-colors py-1">商业蓝图</a>
+                <a href="academy.html" class="hover:text-textMain transition-colors py-1">数字学院</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+        <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+                <h1 class="text-4xl font-extrabold font-mono text-textMain">SYS.BENCHMARKS</h1>
+                <p class="mt-4 text-textDim font-mono text-sm font-medium">QUANTUM_EVALUATION ON CSL & PHOENIX-2014T</p>
+            </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <!-- Chart 1: WER -->
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden">
+                <div class="flex justify-between items-center mb-8 relative z-10">
+                    <h3 class="text-xl font-extrabold font-mono text-textMain">WORD_ERROR_RATE_TENSOR</h3>
+                    <span class="text-xs font-mono bg-emerald-50 text-emerald-600 px-3 py-1 rounded-md border border-emerald-100 font-bold">_LOWER_IS_BETTER</span>
+                </div>
+                <div class="relative h-80 w-full z-10">
+                    <canvas id="chart-wer"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 2: Latency -->
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden">
+                <div class="flex justify-between items-center mb-8 relative z-10">
+                    <h3 class="text-xl font-extrabold font-mono text-textMain">INFERENCE_LATENCY_MATRIX</h3>
+                    <span class="text-xs font-mono bg-blue-50 text-accent px-3 py-1 rounded-md border border-blue-100 font-bold">EFFICIENCY_METRIC</span>
+                </div>
+                <div class="relative h-80 w-full z-10">
+                    <canvas id="chart-scatter"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-8 flex items-center justify-center mt-12 z-50 w-full">
+        <div class="inline-flex items-center flex-wrap justify-center gap-2 md:gap-4 text-[10px] md:text-[11px] font-mono tracking-widest text-slate-400">
+            <span class="font-bold text-slate-700">SYSTEM.YANXIANG</span>
+            <span class="hidden md:inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+            <span class="text-accent font-semibold">CORE_V2.4</span>
+            <span class="hidden md:inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+            <span>BUILD_260322</span>
+            <span class="hidden md:inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+            <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_rgba(16,185,129,0.4)]"></span> ALL_SYSTEMS_NOMINAL</span>
+        </div>
+    </footer>
+
+    <script>
+        Chart.defaults.font.family = "'Space Grotesk', 'Noto Sans SC', monospace";
+        Chart.defaults.color = '#64748b'; // slate-500
+        Chart.defaults.borderColor = '#f1f5f9'; // slate-100 grid
+
+        // Chart 1: WER
+        new Chart(document.getElementById('chart-wer'), {
+            type: 'bar',
+            data: {
+                labels: ['HMMs', 'LSTM_v1', 'Baseline', 'mBART', 'HOLO-QWEN3'],
+                datasets: [{
+                    label: 'WER %',
+                    data: [45.2, 32.5, 28.1, 20.3, 17.5],
+                    backgroundColor: ['#cbd5e1', '#94a3b8', '#64748b', '#38bdf8', '#0ea5e9'],
+                    borderRadius: 6,
+                    barThickness: 30
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // Chart 2: Scatter
+        new Chart(document.getElementById('chart-scatter'), {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Legacy Compute',
+                    data: [{ x: 85, y: 400 }, { x: 88, y: 350 }, { x: 90, y: 500 }, { x: 82, y: 200 }],
+                    backgroundColor: '#94a3b8',
+                    pointRadius: 6
+                }, {
+                    label: 'PULSE-SYNC-CORE',
+                    data: [{ x: 98.2, y: 145 }],
+                    backgroundColor: '#10b981',
+                    pointRadius: 10,
+                    pointHoverRadius: 14,
+                    borderColor: '#34d399',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: {
+                    x: { title: { display: true, text: 'ACCURACY %', font: {size: 12} }, min: 80, max: 100 },
+                    y: { title: { display: true, text: 'LATENCY (ms)', font: {size: 12} }, min: 0, max: 600 }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

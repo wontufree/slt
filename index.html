@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>言象 (YanXiang) - 下一代手语翻译引擎</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Space Grotesk"', '"Noto Sans SC"', 'sans-serif'] },
+                    colors: {
+                        primary: '#f8fafc',
+                        secondary: '#ffffff',
+                        accent: '#0ea5e9',
+                        'accent-hover': '#0284c7',
+                        textMain: '#0f172a',
+                        textDim: '#64748b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { margin: 0; padding: 0; }
+        .cyber-grid {
+            background-image: 
+                linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .blink-cursor { animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body class="bg-primary text-textMain antialiased min-h-screen flex flex-col selection:bg-accent selection:text-white relative cyber-grid">
+    <!-- Navbar -->
+    <nav class="flex-none w-full bg-white/80 backdrop-blur-xl border-b border-slate-200 z-50 fixed top-0 left-0">
+        <div class="max-w-[1440px] mx-auto px-6 h-16 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="w-8 h-8 rounded-lg bg-textMain flex items-center justify-center text-white font-bold text-sm shadow-md">言</div>
+                <span class="font-bold text-lg tracking-tight">言象<span class="text-accent text-xs ml-1.5 font-mono">Yan.Xiang</span></span>
+            </div>
+            <!-- Menu -->
+            <div class="hidden md:flex space-x-8 lg:space-x-10 text-sm font-medium text-textDim tracking-wide">
+                <a href="index.html" class="text-textMain font-bold border-b-2 border-textMain pb-1">翻译引擎</a>
+                <a href="architecture.html" class="hover:text-textMain transition-colors py-1">核心壁垒</a>
+                <a href="benchmarks.html" class="hover:text-textMain transition-colors py-1">性能基准</a>
+                <a href="about.html" class="hover:text-textMain transition-colors py-1">商业蓝图</a>
+                <a href="academy.html" class="hover:text-textMain transition-colors py-1">数字学院</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content: Original Dashboard -->
+    <main class="w-full max-w-[1440px] mx-auto px-6 pt-24 pb-12 flex-none z-10 relative flex flex-col">
+        <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-sky-50 to-transparent mix-blend-multiply pointer-events-none z-0"></div>
+
+        <!-- Top: Hero Text -->
+        <div class="flex-none text-center mb-8 relative z-10">
+
+            <h1 class="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight leading-none mb-4">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-600">跨越无声的</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-600">界限</span>
+            </h1>
+        </div>
+
+        <!-- Bottom: Studio Workstation (Fixed Height for stability) -->
+        <div class="w-full h-[550px] flex flex-col bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden z-10 mx-auto">
+            <!-- Studio Header -->
+            <div class="flex-none h-10 bg-slate-50 border-b border-slate-200 flex items-center px-4 justify-between">
+                <div class="flex space-x-2">
+                    <div class="w-3 h-3 rounded-full bg-slate-300"></div>
+                    <div class="w-3 h-3 rounded-full bg-slate-300"></div>
+                    <div class="w-3 h-3 rounded-full bg-slate-300"></div>
+                </div>
+                <div class="text-[10px] font-mono text-slate-400 font-bold tracking-widest uppercase">yanxiang-node-01 // stream_ready</div>
+                <div class="w-10"></div>
+            </div>
+
+            <!-- Studio Body -->
+            <div class="flex-1 flex flex-col lg:flex-row h-full overflow-hidden">
+                
+                <!-- Video Input (Upload Zone & Preview) -->
+                <div class="lg:w-3/5 relative bg-slate-50 flex flex-col h-full border-r border-slate-200 overflow-hidden cyber-grid">
+                    <!-- Drop Zone -->
+                    <div id="upload-zone" class="flex-1 relative flex flex-col items-center justify-center p-6 bg-white/50 backdrop-blur-sm group cursor-pointer border-2 border-dashed border-transparent hover:border-accent/40 hover:bg-white/80 transition-all duration-300 m-4 rounded-xl">
+                        <input type="file" id="video-upload" accept="video/mp4,video/webm,video/quicktime" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-30" />
+                        <div class="text-center z-10 relative pointer-events-none transform group-hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-20 h-20 bg-blue-50 text-accent rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-blue-100 group-hover:bg-accent group-hover:text-white transition-colors duration-500">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-textMain text-lg md:text-xl font-bold mb-3 font-mono tracking-tight">UPLOAD VIDEO</h3>
+                            <p class="text-xs text-slate-400 font-bold tracking-widest uppercase text-center border bg-white px-4 py-2 rounded-full inline-block shadow-sm">
+                                点击 / 拖拽上传真实手语视频测试
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Video Player Overlay (Hidden by default) -->
+                    <div id="video-preview-container" class="absolute inset-0 w-full h-full hidden bg-black">
+                        <video id="uploaded-video" class="w-full h-full object-cover opacity-80" loop muted playsinline></video>
+                        
+                        <!-- Processing Overlay (Terminal like CSS) -->
+                        <div id="demo-processing" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/60 backdrop-blur-sm z-20 overflow-hidden transition-opacity duration-300">
+                            <div class="text-white font-mono text-center">
+                                <div class="w-20 h-20 border-[3px] border-dashed border-white/20 rounded-full animate-[spin_3s_linear_infinite] mx-auto mb-8 flex items-center justify-center relative">
+                                    <div class="w-16 h-16 border-2 border-accent/50 rounded-full animate-[spin_2s_linear_infinite_reverse] absolute"></div>
+                                    <div class="w-6 h-6 bg-accent rounded-full animate-pulse shadow-[0_0_20px_rgba(14,165,233,1)]"></div>
+                                </div>
+                                <div class="text-xs space-y-3 text-left bg-black/80 backdrop-blur-md p-6 rounded-xl border border-slate-700 shadow-2xl inline-block font-medium min-w-[300px]">
+                                    <div class="text-slate-500 mb-3 font-bold tracking-widest border-b border-slate-800 pb-2">root@yanxiang-engine:~#</div>
+                                    <div class="text-emerald-400 flex justify-between"><span>> Extracting 3D Spatio-Tensor...</span> <span>[OK]</span></div>
+                                    <div class="text-blue-300 flex justify-between"><span>> Int8 Inferencing Layer...</span> <span>[OK]</span></div>
+                                    <div class="text-white flex justify-between items-center mt-2 border-t border-slate-800 pt-3">
+                                        <span>> Qwen-Fusion Synapse...</span> 
+                                        <span id="progress-text" class="text-accent font-bold text-sm bg-accent/20 px-2 py-0.5 rounded">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Analysis Output Panel -->
+                <div class="lg:w-2/5 flex flex-col h-full bg-white p-8 overflow-y-auto relative">
+                    <div class="flex justify-between items-center mb-6 flex-none border-b border-slate-100 pb-4">
+                        <div class="uppercase tracking-widest text-[10px] font-mono font-bold text-slate-400">SYS.STDOUT (Translation)</div>
+                        <button id="reset-btn" class="hidden text-[10px] text-slate-500 font-bold font-mono uppercase tracking-widest hover:text-accent border border-slate-200 hover:border-accent hover:bg-blue-50 px-3 py-1.5 rounded-lg transition-all shadow-sm flex items-center gap-1.5">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                            Re-Test
+                        </button>
+                    </div>
+                    
+                    <div id="result-text" class="text-xl md:text-2xl xl:text-3xl font-extrabold mb-8 flex-none text-textMain leading-tight min-h-[4rem]">
+                        <span class="text-slate-300 font-mono text-sm block blink-cursor">等待流输入..._</span>
+                    </div>
+                    
+                    <div class="flex-none space-y-6 rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm mt-auto">
+                        <div>
+                            <div class="flex justify-between items-end mb-2 font-mono">
+                                <span class="text-[10px] text-textDim tracking-widest font-bold">CONFIDENCE_SCORE</span>
+                                <span id="conf-val" class="text-xs font-black text-accent">0.00%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
+                                <div id="conf-bar" class="bg-gradient-to-r from-blue-400 to-accent h-full transition-all duration-1000 ease-out" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-end mb-2 font-mono">
+                                <span class="text-[10px] text-textDim tracking-widest font-bold">INFERENCE_LATENCY</span>
+                                <span id="lat-val" class="text-xs font-black text-textMain">--- ms</span>
+                            </div>
+                            <div class="grid grid-cols-5 gap-1.5 mb-3">
+                                <div class="h-1.5 bg-slate-200 rounded-full"></div>
+                                <div class="h-1.5 bg-slate-200 rounded-full"></div>
+                                <div class="h-1.5 bg-slate-200 rounded-full"></div>
+                                <div class="h-1.5 bg-slate-200 rounded-full"></div>
+                                <div class="h-1.5 bg-slate-200 rounded-full"></div>
+                            </div>
+                            <div class="text-[10px] text-slate-400 font-mono mt-4 leading-relaxed font-semibold bg-white p-3 rounded-lg border border-slate-200 inline-block">
+                                ENGINE_LAYER: QWEN3-INT8-FUSION<br>
+                                HARDWARE_NODE: EDGE_NPU_CORE_0<br>
+                                SECURE_MODE: LOCAL_ENV_ISOLATED
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="flex-none w-full bg-white border-t border-slate-200 py-4 flex items-center justify-center z-50">
+        <div class="inline-flex items-center flex-wrap justify-center gap-2 md:gap-4 text-[10px] md:text-[11px] font-mono tracking-widest text-slate-400">
+            <span class="font-bold text-slate-700">SYSTEM.YANXIANG</span>
+            <span class="hidden md:inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+            <span class="text-accent font-semibold">CORE_V2.4</span>
+            <span class="hidden md:inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+            <span>BUILD_260322</span>
+            <span class="hidden md:inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+            <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_rgba(16,185,129,0.4)]"></span> ALL_SYSTEMS_NOMINAL</span>
+        </div>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        const uploadZone = document.getElementById('upload-zone');
+        const fileInput = document.getElementById('video-upload');
+        const previewContainer = document.getElementById('video-preview-container');
+        const videoEl = document.getElementById('uploaded-video');
+        const processing = document.getElementById('demo-processing');
+        const resText = document.getElementById('result-text');
+        const confBar = document.getElementById('conf-bar');
+        const confVal = document.getElementById('conf-val');
+        const latVal = document.getElementById('lat-val');
+        const resetBtn = document.getElementById('reset-btn');
+        const progressText = document.getElementById('progress-text');
+
+        // Professional pseudo-translations array
+        const dummyTranslations = [
+            "您好，请问心内科专家门诊在几楼？我这里因为胸闷很不舒服。",
+            "我想办理跨行转账，但是网银卡每天有限额，需要身份确认。",
+            "麻烦帮我调取一下上个月的医保消费明细打印单，谢谢。",
+            "我昨天开始喉咙痛，并且一直低烧，医生建议我先做血常规排查。",
+            "企业年审材料我都带齐了，请问变更法人的窗口在哪里取号？"
+        ];
+
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if(!file || !file.type.startsWith('video/')) {
+                alert("请上传有效的视频文件进行体验测试。");
+                return;
+            }
+
+            // Create local blob URL for immediate playback display
+            const fileUrl = URL.createObjectURL(file);
+            videoEl.src = fileUrl;
+            videoEl.play();
+
+            // Switch UI states
+            uploadZone.classList.add('hidden');
+            previewContainer.classList.remove('hidden');
+            processing.classList.remove('opacity-0');
+            processing.classList.remove('hidden');
+            resetBtn.classList.remove('hidden');
+            
+            resText.innerHTML = '<span class="text-slate-400 font-mono text-sm blink-cursor">Analyzing Tensor..._</span>';
+            confVal.innerText = '0.00%';
+            confBar.style.width = '0%';
+            latVal.innerText = '--- ms';
+            latVal.className = "text-xs font-bold text-textMain";
+            progressText.innerText = '0%';
+
+            // Real Backend Fetch
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // Fake progress flow while waiting for backend
+            let p = 0;
+            let flowInterval = setInterval(() => {
+                if (p < 95) {
+                    p += Math.floor(Math.random() * 8) + 1;
+                    if(p > 95) p = 95;
+                    progressText.innerText = p + '%';
+                }
+            }, 300);
+
+            fetch('http://127.0.0.1:8001/api/v1/slt/translate', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                clearInterval(flowInterval);
+                progressText.innerText = '100%';
+                
+                // Fade out processing overlay
+                processing.classList.add('opacity-0');
+                setTimeout(() => {
+                    processing.classList.add('hidden');
+                }, 300);
+                
+                if (data.status === 'success') {
+                    resText.innerHTML = data.text;
+                    resText.className = "text-xl md:text-2xl xl:text-3xl font-extrabold mb-8 flex-none text-textMain leading-tight min-h-[4rem] text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700";
+                    confVal.innerText = data.confidence.toFixed(2) + '%';
+                    confBar.style.width = data.confidence + '%';
+                    latVal.innerText = data.latency_ms + ' ms';
+                    latVal.className = "text-xs font-black text-emerald-500 drop-shadow-sm";
+                } else {
+                    const errMsg = data.detail || data.message || "未知错误";
+                    resText.innerHTML = "后台处理失败: " + errMsg;
+                    resText.className = "text-xl md:text-2xl xl:text-3xl font-extrabold mb-8 flex-none text-red-500 leading-tight min-h-[4rem]";
+                }
+            })
+            .catch(err => {
+                clearInterval(flowInterval);
+                processing.classList.add('opacity-0');
+                setTimeout(() => {
+                    processing.classList.add('hidden');
+                }, 300);
+                
+                resText.innerHTML = "网络通信错误。请确保后端服务 (uvicorn) 正在运行。<br/><span class='text-sm text-slate-500'>" + err.message + "</span>";
+                resText.className = "text-xl md:text-2xl xl:text-3xl font-extrabold mb-8 flex-none text-red-500 leading-tight min-h-[4rem]";
+            });
+        });
+
+        // Reset to initial state
+        resetBtn.addEventListener('click', () => {
+            fileInput.value = '';
+            videoEl.pause();
+            videoEl.removeAttribute('src'); 
+            
+            previewContainer.classList.add('hidden');
+            processing.classList.add('hidden');
+            processing.classList.remove('opacity-0');
+            uploadZone.classList.remove('hidden');
+            resetBtn.classList.add('hidden');
+
+            resText.innerHTML = '<span class="text-slate-300 font-mono text-sm block blink-cursor">等待流输入..._</span>';
+            confVal.innerText = '0.00%';
+            confBar.style.width = '0%';
+            latVal.innerText = '--- ms';
+            latVal.className = "text-xs font-bold text-textMain";
+        });
+    </script>
+</body>
+</html>

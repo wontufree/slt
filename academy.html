@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字生态学院 - 言象 (YanXiang)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Space Grotesk"', '"Noto Sans SC"', 'sans-serif'] },
+                    colors: {
+                        primary: '#f8fafc',
+                        secondary: '#ffffff',
+                        accent: '#0ea5e9',
+                        textMain: '#0f172a',
+                        textDim: '#64748b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-primary text-textMain antialiased pt-20">
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200">
+        <div class="max-w-[1440px] mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="w-8 h-8 rounded-lg bg-textMain flex items-center justify-center text-white font-bold text-sm shadow-md">言</div>
+                <span class="font-bold text-lg tracking-tight">言象<span class="text-accent text-xs ml-1.5 font-mono">Yan.Xiang</span></span>
+            </div>
+            <div class="hidden md:flex space-x-8 lg:space-x-10 text-sm font-medium text-textDim tracking-wide">
+                <a href="index.html" class="hover:text-textMain transition-colors py-1">翻译引擎</a>
+                <a href="architecture.html" class="hover:text-textMain transition-colors py-1">核心壁垒</a>
+                <a href="benchmarks.html" class="hover:text-textMain transition-colors py-1">性能基准</a>
+                <a href="about.html" class="hover:text-textMain transition-colors py-1">商业蓝图</a>
+                <a href="academy.html" class="text-textMain font-bold border-b-2 border-textMain pb-1">数字学院</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-[1440px] mx-auto px-6 py-12">
+        <div class="mb-16">
+
+            <h1 class="text-4xl md:text-5xl font-extrabold text-textMain mb-6 font-mono tracking-tight">
+                言象数字媒体赋能中心
+            </h1>
+            <p class="text-lg text-textDim max-w-4xl font-medium leading-relaxed">
+                跨越无声的界限，不仅依靠底层算力，更需要全尺度人文语料的共建。作为无障碍数字基建闭环，我们聚合了极高信噪比的手语流媒体资源并原生嵌入后台，确保医护及前台人员的沟通训练零损耗流转。
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Video 1 -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+                <div class="aspect-video w-full bg-slate-900 relative">
+                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls preload="metadata">
+                        <source src="assets/videos/元宵（汤圆）.MOV" type="video/quicktime">
+                        <source src="assets/videos/元宵（汤圆）.MOV" type="video/mp4">
+                        您的浏览器不支持原生 HTML5 视频播放。
+                    </video>
+                </div>
+                <div class="p-5 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-blue-50 text-accent text-[10px] font-mono px-2 py-1 rounded-full font-bold uppercase tracking-widest border border-blue-100">孤立词汇</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors font-mono">元宵（汤圆）</h3>
+                    <div class="pt-3 mt-auto border-t border-slate-100 flex justify-between items-center text-[10px] font-mono text-slate-400 font-bold tracking-widest">
+                        <span>LOCAL_SOURCE</span>
+                        <span class="text-emerald-500 flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div> READY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+                <div class="aspect-video w-full bg-slate-900 relative">
+                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls preload="metadata">
+                        <source src="assets/videos/后.MOV" type="video/quicktime">
+                        <source src="assets/videos/后.MOV" type="video/mp4">
+                        您的浏览器不支持原生 HTML5 视频播放。
+                    </video>
+                </div>
+                <div class="p-5 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-blue-50 text-accent text-[10px] font-mono px-2 py-1 rounded-full font-bold uppercase tracking-widest border border-blue-100">孤立词汇</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors font-mono">后</h3>
+                    <div class="pt-3 mt-auto border-t border-slate-100 flex justify-between items-center text-[10px] font-mono text-slate-400 font-bold tracking-widest">
+                        <span>LOCAL_SOURCE</span>
+                        <span class="text-emerald-500 flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div> READY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+                <div class="aspect-video w-full bg-slate-900 relative">
+                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls preload="metadata">
+                        <source src="assets/videos/少数民族.MOV" type="video/quicktime">
+                        <source src="assets/videos/少数民族.MOV" type="video/mp4">
+                        您的浏览器不支持原生 HTML5 视频播放。
+                    </video>
+                </div>
+                <div class="p-5 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-blue-50 text-accent text-[10px] font-mono px-2 py-1 rounded-full font-bold uppercase tracking-widest border border-blue-100">孤立词汇</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors font-mono">少数民族</h3>
+                    <div class="pt-3 mt-auto border-t border-slate-100 flex justify-between items-center text-[10px] font-mono text-slate-400 font-bold tracking-widest">
+                        <span>LOCAL_SOURCE</span>
+                        <span class="text-emerald-500 flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div> READY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 4 -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+                <div class="aspect-video w-full bg-slate-900 relative">
+                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls preload="metadata">
+                        <source src="assets/videos/挑选（选拔、选举、抽）.MOV" type="video/quicktime">
+                        <source src="assets/videos/挑选（选拔、选举、抽）.MOV" type="video/mp4">
+                        您的浏览器不支持原生 HTML5 视频播放。
+                    </video>
+                </div>
+                <div class="p-5 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-blue-50 text-accent text-[10px] font-mono px-2 py-1 rounded-full font-bold uppercase tracking-widest border border-blue-100">孤立词汇</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors font-mono">挑选（选拔、选举、抽）</h3>
+                    <div class="pt-3 mt-auto border-t border-slate-100 flex justify-between items-center text-[10px] font-mono text-slate-400 font-bold tracking-widest">
+                        <span>LOCAL_SOURCE</span>
+                        <span class="text-emerald-500 flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div> READY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 5 -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+                <div class="aspect-video w-full bg-slate-900 relative">
+                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls preload="metadata">
+                        <source src="assets/videos/沙子（土、灰尘）.MOV" type="video/quicktime">
+                        <source src="assets/videos/沙子（土、灰尘）.MOV" type="video/mp4">
+                        您的浏览器不支持原生 HTML5 视频播放。
+                    </video>
+                </div>
+                <div class="p-5 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-blue-50 text-accent text-[10px] font-mono px-2 py-1 rounded-full font-bold uppercase tracking-widest border border-blue-100">孤立词汇</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors font-mono">沙子（土、灰尘）</h3>
+                    <div class="pt-3 mt-auto border-t border-slate-100 flex justify-between items-center text-[10px] font-mono text-slate-400 font-bold tracking-widest">
+                        <span>LOCAL_SOURCE</span>
+                        <span class="text-emerald-500 flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div> READY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 6 -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+                <div class="aspect-video w-full bg-slate-900 relative">
+                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls preload="metadata">
+                        <source src="assets/videos/社会.MOV" type="video/quicktime">
+                        <source src="assets/videos/社会.MOV" type="video/mp4">
+                        您的浏览器不支持原生 HTML5 视频播放。
+                    </video>
+                </div>
+                <div class="p-5 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-blue-50 text-accent text-[10px] font-mono px-2 py-1 rounded-full font-bold uppercase tracking-widest border border-blue-100">孤立词汇</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors font-mono">社会</h3>
+                    <div class="pt-3 mt-auto border-t border-slate-100 flex justify-between items-center text-[10px] font-mono text-slate-400 font-bold tracking-widest">
+                        <span>LOCAL_SOURCE</span>
+                        <span class="text-emerald-500 flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div> READY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 7 -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+                <div class="aspect-video w-full bg-slate-900 relative">
+                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls preload="metadata">
+                        <source src="assets/videos/药片.MOV" type="video/quicktime">
+                        <source src="assets/videos/药片.MOV" type="video/mp4">
+                        您的浏览器不支持原生 HTML5 视频播放。
+                    </video>
+                </div>
+                <div class="p-5 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-blue-50 text-accent text-[10px] font-mono px-2 py-1 rounded-full font-bold uppercase tracking-widest border border-blue-100">孤立词汇</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors font-mono">药片</h3>
+                    <div class="pt-3 mt-auto border-t border-slate-100 flex justify-between items-center text-[10px] font-mono text-slate-400 font-bold tracking-widest">
+                        <span>LOCAL_SOURCE</span>
+                        <span class="text-emerald-500 flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div> READY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 8 -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+                <div class="aspect-video w-full bg-slate-900 relative">
+                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls preload="metadata">
+                        <source src="assets/videos/退学.MOV" type="video/quicktime">
+                        <source src="assets/videos/退学.MOV" type="video/mp4">
+                        您的浏览器不支持原生 HTML5 视频播放。
+                    </video>
+                </div>
+                <div class="p-5 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-blue-50 text-accent text-[10px] font-mono px-2 py-1 rounded-full font-bold uppercase tracking-widest border border-blue-100">孤立词汇</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors font-mono">退学</h3>
+                    <div class="pt-3 mt-auto border-t border-slate-100 flex justify-between items-center text-[10px] font-mono text-slate-400 font-bold tracking-widest">
+                        <span>LOCAL_SOURCE</span>
+                        <span class="text-emerald-500 flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div> READY</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-8 flex items-center justify-center mt-12 z-50 w-full">
+        <div class="inline-flex items-center flex-wrap justify-center gap-2 md:gap-4 text-[10px] md:text-[11px] font-mono tracking-widest text-slate-400">
+            <span class="font-bold text-slate-700">SYSTEM.YANXIANG</span>
+            <span class="hidden md:inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+            <span class="text-accent font-semibold">CORE_V2.4</span>
+            <span class="hidden md:inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+            <span>BUILD_260322</span>
+            <span class="hidden md:inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+            <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_rgba(16,185,129,0.4)]"></span> ALL_SYSTEMS_NOMINAL</span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商业蓝图 - 言象 (YanXiang)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Space Grotesk"', '"Noto Sans SC"', 'sans-serif'] },
+                    colors: {
+                        primary: '#f8fafc',
+                        secondary: '#ffffff',
+                        accent: '#0ea5e9',
+                        textMain: '#0f172a',
+                        textDim: '#64748b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-primary text-textMain antialiased pt-20">
+    <!-- Navbar with active tab on 'about.html' -> '商业蓝图' -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200">
+        <div class="max-w-[1440px] mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="w-8 h-8 rounded-lg bg-textMain flex items-center justify-center text-white font-bold text-sm shadow-md">言</div>
+                <span class="font-bold text-lg tracking-tight">言象<span class="text-accent text-xs ml-1.5 font-mono">Yan.Xiang</span></span>
+            </div>
+            <div class="hidden md:flex space-x-8 lg:space-x-10 text-sm font-medium text-textDim tracking-wide">
+                <a href="index.html" class="hover:text-textMain transition-colors py-1">翻译引擎</a>
+                <a href="architecture.html" class="hover:text-textMain transition-colors py-1">核心壁垒</a>
+                <a href="benchmarks.html" class="hover:text-textMain transition-colors py-1">性能基准</a>
+                <a href="about.html" class="text-textMain font-bold border-b-2 border-textMain pb-1">商业蓝图</a>
+                <a href="academy.html" class="hover:text-textMain transition-colors py-1">数字学院</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-[1440px] mx-auto px-6 py-12">
+        <div class="mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-textMain mb-4 font-mono tracking-tight">商业蓝图与 GTM 飞轮</h1>
+            <p class="text-lg text-textDim max-w-4xl font-medium leading-relaxed">
+                从 4.3 亿听障人口的庞大基数出发，精准切入智慧医疗、金融适老化与 To-G 政务公开三大高壁垒刚需市场。言象正通过无可替代的端数据基建，构建千亿级的无障碍商业护城河。
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- TAM/SAM/SOM -->
+            <div class="lg:col-span-8 bg-gradient-to-br from-slate-50 to-white rounded-3xl p-10 lg:p-12 border border-slate-200 shadow-sm relative overflow-hidden group">
+                <div class="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-accent to-emerald-400"></div>
+                <h2 class="text-3xl font-black text-textMain mb-8 font-mono tracking-tight">市场规模 (Market Boundaries)</h2>
+                
+                <div class="space-y-6 relative z-10 w-full lg:w-[85%]">
+                    <!-- TAM -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative overflow-hidden">
+                        <div class="absolute left-0 top-0 bottom-0 w-2 bg-slate-200"></div>
+                        <div class="flex flex-col md:flex-row md:items-end justify-between mb-3">
+                            <span class="text-xs font-mono font-bold text-slate-500 uppercase tracking-widest pl-4">Total Addressable Market (全球TAM)</span>
+                            <span class="text-3xl font-black text-slate-300 md:ml-4 mt-2 md:mt-0">$120B+</span>
+                        </div>
+                        <p class="text-sm font-medium text-slate-400 pl-4">盘踞全球 4.3 亿听障人口及泛弱势群体的适老化全场景交互基础设施采购预算池。</p>
+                    </div>
+                    <!-- SAM -->
+                    <div class="bg-blue-50/50 rounded-2xl p-6 border border-blue-100 shadow-sm relative overflow-hidden">
+                        <div class="absolute left-0 top-0 bottom-0 w-2 bg-blue-300"></div>
+                        <div class="flex flex-col md:flex-row md:items-end justify-between mb-3">
+                            <span class="text-xs font-mono font-bold text-accent uppercase tracking-widest pl-4">Serviceable Available Market (大中华SAM)</span>
+                            <span class="text-3xl font-black text-accent opacity-70 md:ml-4 mt-2 md:mt-0">￥380亿</span>
+                        </div>
+                        <p class="text-sm font-medium text-slate-500 pl-4">中国 2700 万听障群体的数字平权补偿，及国内超万家公立三甲、网点大厅在“合规政策”强推下的硬性采购蓝海。</p>
+                    </div>
+                    <!-- SOM -->
+                    <div class="bg-emerald-50/30 rounded-2xl p-6 lg:p-8 border border-emerald-200 shadow-md relative overflow-hidden transform lg:scale-105 origin-left">
+                        <div class="absolute left-0 top-0 bottom-0 w-3 bg-emerald-500"></div>
+                        <div class="flex flex-col md:flex-row md:items-end justify-between mb-4">
+                            <span class="text-xs font-mono font-bold text-emerald-600 uppercase tracking-widest pl-4">Serviceable Obtainable Market (垂直突破SOM)</span>
+                            <span class="text-4xl font-black text-emerald-600 md:ml-4 mt-2 md:mt-0">￥85亿</span>
+                        </div>
+                        <p class="text-sm font-bold text-emerald-800 pl-4 leading-relaxed">
+                            精准剔除伪需求，聚焦头部三甲导诊台、招行等大型股份制银行临柜体系。以每年 30% 最快渗透率，暴力替代高昂的人工手语翻译外包与呼叫中心业务。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Model -->
+            <div class="lg:col-span-4 bg-slate-900 rounded-3xl p-10 border border-slate-800 shadow-xl text-white flex flex-col justify-between group relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-accent/20 blur-3xl rounded-full group-hover:bg-accent/40 transition-colors duration-700"></div>
+                <div class="relative z-10 w-full h-full flex flex-col">
+                    <h3 class="text-2xl font-bold mb-8 font-mono text-white">盈利模式 <br><span class="text-sm text-slate-400 font-medium tracking-widest uppercase">Dual Revenue Model</span></h3>
+                    
+                    <div class="space-y-8 flex-1">
+                        <div class="border-b border-slate-800 pb-6">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="bg-accent/20 text-accent text-xs font-mono px-2 py-0.5 rounded font-bold">ARR</span>
+                                <h4 class="text-accent font-mono font-bold text-xl">SaaS API 调用费</h4>
+                            </div>
+                            <p class="text-sm text-slate-400 font-medium leading-relaxed">面向轻量级 C端产品或第三方泛用大屏，提供云端推理 Pay-as-you-go。软件边际成本递减，呈现极强网络效应 (Network Effects)。</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="bg-emerald-500/20 text-emerald-400 text-xs font-mono px-2 py-0.5 rounded font-bold">LTV</span>
+                                <h4 class="text-emerald-400 font-mono font-bold text-xl">全栈订阅与维保</h4>
+                            </div>
+                            <p class="text-sm text-slate-400 font-medium leading-relaxed">在医院银行端收取“私有化边缘计算舱”的一次性高昂初装授权费，并通过绑定刚需的 24/7 OTA 连源维保协议，建立极高的客户终身锁定价值。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Go-To-Market Flow -->
+            <div class="lg:col-span-12 bg-white rounded-3xl p-10 lg:p-14 border border-slate-200 shadow-sm mt-4">
+                <div class="mb-14">
+                    <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-accent font-bold text-[10px] font-mono mb-4 shadow-sm tracking-widest">
+                        > GTM_FLYWHEEL_STRATEGY
+                    </div>
+                    <h3 class="text-3xl font-black font-mono text-textMain">商业裂变推演 (Go-To-Market)</h3>
+                    <p class="text-textDim text-sm md:text-base font-medium mt-3 max-w-2xl leading-relaxed">我们避开了激烈的纯 C 端流量红海厮杀，采用极度理性的**“自上而下标杆攻防，自下而上生态裂变”**的高敏 B/G 端打法。</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6 relative">
+                    <!-- Progress Line background -->
+                    <div class="hidden md:block absolute top-[45px] left-10 right-10 h-0.5 bg-gradient-to-r from-slate-200 via-accent/30 to-emerald-200 z-0"></div>
+                    
+                    <!-- Phase 1 -->
+                    <div class="relative z-10">
+                        <div class="w-24 h-24 mx-auto bg-white border-[3px] border-slate-200 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm group hover:border-accent transition-colors">
+                            <span class="text-2xl font-bold text-textMain font-mono">01</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest mt-1">SEED MVP</span>
+                        </div>
+                        <h4 class="text-center font-bold text-lg text-textMain mb-3">树立灯塔高墙</h4>
+                        <p class="text-sm text-slate-500 text-center font-medium leading-relaxed px-2">
+                            以科创联合研发名义战略入驻头部三甲（如协和）。不仅建立名利场背书，更用零成本套取极端真实的特种病理手语库，打造**闭源语料垄断**。
+                        </p>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="relative z-10">
+                        <div class="w-24 h-24 mx-auto bg-accent text-white border-[3px] border-blue-200 rounded-full flex flex-col items-center justify-center mb-6 shadow-[0_0_20px_rgba(14,165,233,0.3)] transform scale-105">
+                            <span class="text-2xl font-bold font-mono">02</span>
+                            <span class="text-[9px] text-blue-100 font-bold tracking-widest mt-1">EXPANSION</span>
+                        </div>
+                        <h4 class="text-center font-black text-lg text-accent mb-3">政策集采爆发</h4>
+                        <p class="text-sm text-slate-500 text-center font-medium leading-relaxed px-2">
+                            携灯塔标杆数据，配合残联政策指导文件。将“软硬一体降噪全息舱”列入省级卫健委及地方医保大宗集采白名单，实现百亿市值的野蛮吞噬。
+                        </p>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div class="relative z-10">
+                        <div class="w-24 h-24 mx-auto bg-white border-[3px] border-slate-200 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm group hover:border-slate-400 transition-colors">
+                            <span class="text-2xl font-bold text-textMain font-mono">03</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest mt-1">CROSS_DOMAIN</span>
+                        </div>
+                        <h4 class="text-center font-bold text-lg text-textMain mb-3">平行维系降维</h4>
+                        <p class="text-sm text-slate-500 text-center font-medium leading-relaxed px-2">
+                            依靠医疗级最高准入标准的打磨，以极其优化的物理断网部署方案平推至公安法办、银行信贷审查等次级高敏场景，实施收割。
+                        </p>
+                    </div>
+
+                    <!-- Phase 4 -->
+                    <div class="relative z-10">
+                        <div class="w-24 h-24 mx-auto bg-emerald-50 text-emerald-600 border-[3px] border-emerald-200 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm group hover:bg-emerald-500 hover:text-white transition-all">
+                            <span class="text-2xl font-bold font-mono">04</span>
+                            <span class="text-[9px] text-emerald-600/70 group-hover:text-emerald-100 font-bold tracking-widest mt-1">MONOPOLY</span>
+                        </div>
+                        <h4 class="text-center font-bold text-lg text-emerald-600 mb-3">SaaS 协议生态垄断</h4>
+                        <p class="text-sm text-slate-500 text-center font-medium leading-relaxed px-2">
+                            将剥离了特种词牌的公版架构封装为通用 SDK/API。以微薄抽成向各类城市大屏与软件端赋能，最终制定国家级无障碍数字交互的技术标准体系。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-8 flex items-center justify-center mt-12 z-50 w-full">
+        <!-- Footer info... -->
+        <div class="inline-flex items-center flex-wrap justify-center gap-2 md:gap-4 text-[10px] md:text-[11px] font-mono tracking-widest text-slate-400">
+            <span class="font-bold text-slate-700">SYSTEM.YANXIANG</span>
+            <span class="hidden md:inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+            <span class="text-accent font-semibold">CORE_V2.4</span>
+            <span class="hidden md:inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+            <span>BUILD_260322</span>
+            <span class="hidden md:inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+            <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_rgba(16,185,129,0.4)]"></span> ALL_SYSTEMS_NOMINAL</span>
+        </div>
+    </footer>
+</body>
+</html>
